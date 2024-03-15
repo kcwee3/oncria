@@ -1,0 +1,80 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+
+using namespace std;
+
+// Function to display the dashboard menu
+void displayMenu() {
+    cout << "Dashboard Menu\n";
+    cout << "1. View Statistics\n";
+    cout << "2. View Alerts\n";
+    cout << "3. View Recent Activities\n";
+    cout << "4. Exit\n";
+    cout << "Enter your choice: ";
+}
+
+// Function to display statistics
+void viewStatistics() {
+    // Simulated statistics data
+    int totalUsers = 100;
+    int activeUsers = 80;
+    int totalSales = 5000;
+
+    cout << "Statistics\n";
+    cout << "Total Users: " << totalUsers << endl;
+    cout << "Active Users: " << activeUsers << endl;
+    cout << "Total Sales: $" << totalSales << endl;
+}
+
+// Function to display alerts
+void viewAlerts() {
+    // Simulated alerts data
+    vector<string> alerts = {"Server down", "Low disk space", "Network congestion"};
+
+    cout << "Alerts\n";
+    for (const auto& alert : alerts) {
+        cout << "- " << alert << endl;
+    }
+}
+
+// Function to display recent activities
+void viewRecentActivities() {
+    // Simulated recent activities data
+    vector<string> activities = {"User login", "Product added", "Payment received"};
+
+    cout << "Recent Activities\n";
+    for (const auto& activity : activities) {
+        cout << "- " << activity << endl;
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        displayMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                viewStatistics();
+                break;
+            case 2:
+                viewAlerts();
+                break;
+            case 3:
+                viewRecentActivities();
+                break;
+            case 4:
+                cout << "Exiting dashboard...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+                break;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+In this example:

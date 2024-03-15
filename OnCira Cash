@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function to process credit card payment
+void processCreditCardPayment(double amount, const string& cardNumber, const string& expiryDate, const string& cvv) {
+    // Your implementation here
+    // This function would typically involve interacting with a payment gateway or API
+    // to process the payment using the provided credit card information
+    // Placeholder implementation
+    cout << "Processing credit card payment..." << endl;
+    cout << "Amount: $" << amount << endl;
+    cout << "Card Number: " << cardNumber << endl;
+    cout << "Expiry Date: " << expiryDate << endl;
+    cout << "CVV: " << cvv << endl;
+    cout << "Payment processed successfully!" << endl;
+}
+
+int main() {
+    // Example usage
+    double amount = 100.0;
+    string cardNumber = "1234 5678 9012 3456";
+    string expiryDate = "12/23";
+    string cvv = "123";
+
+    processCreditCardPayment(amount, cardNumber, expiryDate, cvv);
+
+    return 0;
+}#include <iostream>
+
+using namespace std;
+
+// Function to handle cash transaction
+void processCashTransaction(double amountReceived, double totalAmount) {
+    // Calculate change
+    double change = amountReceived - totalAmount;
+
+    // Display receipt
+    cout << "Cash Transaction Receipt" << endl;
+    cout << "------------------------" << endl;
+    cout << "Total Amount: $" << totalAmount << endl;
+    cout << "Amount Received: $" << amountReceived << endl;
+    cout << "Change: $" << change << endl;
+    cout << "Thank you for your purchase!" << endl;
+}
+
+int main() {
+    // Example usage
+    double totalAmount = 50.0;
+    double amountReceived = 100.0;
+
+    processCashTransaction(amountReceived, totalAmount);
+
+    return 0;
+}

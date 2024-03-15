@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Define a class for a merchant
+class Merchant {
+private:
+    string name;
+    string contactInfo;
+
+public:
+    Merchant(const string& n, const string& info) : name(n), contactInfo(info) {}
+
+    // Getter methods
+    string getName() const {
+        return name;
+    }
+
+    string getContactInfo() const {
+        return contactInfo;
+    }
+};
+
+// Define a class for an outlet
+class Outlet {
+private:
+    string location;
+    Merchant* owner;
+
+public:
+    Outlet(const string& loc, Merchant* m) : location(loc), owner(m) {}
+
+    // Getter methods
+    string getLocation() const {
+        return location;
+    }
+
+    Merchant* getOwner() const {
+        return owner;
+    }
+};
+
+int main() {
+    // Create some merchants
+    Merchant merchant1("ABC Clothing", "contact@abcclothing.com");
+    Merchant merchant2("XYZ Electronics", "info@xyzelectronics.com");
+
+    // Create outlets associated with these merchants
+    Outlet outlet1("Outlet A", &merchant1);
+    Outlet outlet2("Outlet B", &merchant1);
+    Outlet outlet3("Outlet C", &merchant2);
+
+    // Store outlets in a vector
+    vector<Outlet> outlets;
+    outlets.push_back(outlet1);
+    outlets.push_back(outlet2);
+    outlets.push_back(outlet3);
+
+    // Display information about outlets and their owners
+    cout << "List of Outlets:\n";
+    for (const Outlet& outlet : outlets) {
+        cout << "Location: " << outlet.getLocation() << endl;
+        cout << "Owner: " << outlet.getOwner()->getName() << endl;
+        cout << "Contact: " << outlet.getOwner()->getContactInfo() << endl;
+        cout << endl;
+    }
+
+    return 0;
+}

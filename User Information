@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Define a structure to represent user information
+struct User {
+    string username;
+    string email;
+    int age;
+};
+
+// Function to create a new user
+User createUser() {
+    User user;
+    cout << "Enter username: ";
+    getline(cin >> ws, user.username); // Read username with spaces
+    cout << "Enter email: ";
+    cin >> user.email;
+    cout << "Enter age: ";
+    cin >> user.age;
+    return user;
+}
+
+// Function to display user information
+void displayUser(const User& user) {
+    cout << "Username: " << user.username << endl;
+    cout << "Email: " << user.email << endl;
+    cout << "Age: " << user.age << endl;
+}
+
+int main() {
+    User user;
+
+    // Create a new user
+    user = createUser();
+
+    // Display user information
+    cout << "\nUser Information:\n";
+    displayUser(user);
+
+    return 0;
+}

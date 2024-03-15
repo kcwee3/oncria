@@ -1,0 +1,101 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define a structure to represent a contact
+struct Contact {
+    string name;
+    string phoneNumber;
+};
+
+// Function to add a new contact to the contact list
+void addContact(vector<Contact>& contacts) {
+    Contact newContact;
+    cout << "Enter name: ";
+    getline(cin >> ws, newContact.name); // getline() to handle spaces in name
+    cout << "Enter phone number: ";
+    getline(cin, newContact.phoneNumber);
+    contacts.push_back(newContact);
+}
+
+// Function to display all contacts in the contact list
+void displayContacts(const vector<Contact>& contacts) {
+    if (contacts.empty()) {
+        cout << "Contact list is empty\n";
+        return;
+    }
+    cout << "Contacts:\n";
+    for (const auto& contact : contacts) {
+        cout << "Name: " << contact.name << ", Phone Number: " << contact.phoneNumber << endl;
+    }
+}
+
+// Function to save the contact list to a file
+void saveContacts(const vector<Contact>& contacts, const string& filename) {
+    ofstream outFile(filename);
+    if (!outFile) {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+    for (const auto& contact : contacts) {
+        outFile << contact.name << ',' << contact.phoneNumber << endl;
+    }
+    outFile.close();
+}
+
+// Function to load contacts from a file into the contact list
+void loadContacts(vector<Contact>& contacts, const string& filename) {
+    ifstream inFile(filename);
+    if (!inFile) {
+        cerr << "Error: Unable to open file for reading\n";
+        return;
+    }
+    Contact contact;
+    while (getline(inFile, contact.name, ',') && getline(inFile, contact.phoneNumber)) {
+        contacts.push_back(contact);
+    }
+    inFile.close();
+}
+
+int main() {
+    vector<Contact> contacts;
+    string filename = "contacts.txt"; // File to store contacts
+
+    // Load contacts from file (if available)
+    loadContacts(contacts, filename);
+
+    int choice;
+    do {
+        cout << "\nContact List\n";
+        cout << "1. Add Contact\n";
+        cout << "2. Display Contacts\n";
+        cout << "3. Save Contacts\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addContact(contacts);
+                break;
+            case 2:
+                displayContacts(contacts);
+                break;
+            case 3:
+                saveContacts(contacts, filename);
+                cout << "Contacts saved to file.\n";
+                break;
+            case 4:
+                cout << "Exiting program...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+                break;
+        }
+    } while (choice != 4);
+
+    return 0;
+}

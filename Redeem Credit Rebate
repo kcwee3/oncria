@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+// Define a structure to represent a reward or coupon
+struct Reward {
+    string code;
+    double value;
+    string description;
+};
+
+// Function to redeem a reward
+void redeemReward(const string& code, map<string, Reward>& rewards) {
+    // Check if the code exists in the rewards map
+    auto it = rewards.find(code);
+    if (it != rewards.end()) {
+        // Reward found, display details and mark as redeemed
+        cout << "Redeeming Reward..." << endl;
+        cout << "Code: " << it->second.code << endl;
+        cout << "Description: " << it->second.description << endl;
+        cout << "Value: $" << it->second.value << endl;
+        // Optionally, you can perform additional actions here, such as updating a user's balance
+        // Mark the reward as redeemed (if required)
+        rewards.erase(it);
+        cout << "Reward redeemed successfully!" << endl;
+    } else {
+        // Reward not found
+        cout << "Invalid or expired code. Please try again." << endl;
+    }
+}
+
+int main() {
+    // Initialize rewards
+    map<string, Reward> rewards;
+    // Add some rewards (for demonstration purposes)
+    rewards["REWARD10"] = {"REWARD10", 10.0, "10% discount coupon"};
+    rewards["REWARD20"] = {"REWARD20", 20.0, "20% discount coupon"};
+
+    // Example usage
+    string code;
+    cout << "Enter the redemption code: ";
+    cin >> code;
+
+    redeemReward(code, rewards);
+
+    return 0;
+}

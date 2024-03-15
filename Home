@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // Displaying the title and project information
+    cout << "***** Welcome to the Economics Project *****\n\n";
+    cout << "This program aims to analyze economic data and trends.\n";
+    cout << "Please choose an option:\n\n";
+
+    // Displaying menu options
+    cout << "1. Analyze Economic Data\n";
+    cout << "2. Generate Economic Reports\n";
+    cout << "3. Exit\n\n";
+
+    // Handling user input
+    int choice;
+    cout << "Enter your choice (1-3): ";
+    cin >> choice;
+
+    // Performing actions based on user choice
+    switch (choice) {
+        case 1:
+            // Call function to analyze economic data
+            cout << "Analyzing economic data...\n";
+            break;
+        case 2:
+            // Call function to generate economic reports
+            cout << "Generating economic reports...\n";
+            break;
+        case 3:
+            // Exiting the program
+            cout << "Exiting the program. Goodbye!\n";
+            break;
+        default:
+            // Handling invalid input
+            cout << "Invalid choice. Please enter a number between 1 and 3.\n";
+            break;
+    }
+
+    return 0;

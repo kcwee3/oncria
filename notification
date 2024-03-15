@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Notification structure
+struct Notification {
+    int id;
+    string message;
+
+    Notification(int id, const string& message) : id(id), message(message) {}
+};
+
+// Notification Manager class
+class NotificationManager {
+private:
+    vector<Notification> notifications;
+
+public:
+    void sendNotification(int id, const string& message) {
+        Notification newNotification(id, message);
+        notifications.push_back(newNotification);
+    }
+
+    void displayNotifications() {
+        cout << "Notifications:\n";
+        for (const auto& notification : notifications) {
+            cout << "[" << notification.id << "] " << notification.message << endl;
+        }
+    }
+
+    void clearNotifications() {
+        notifications.clear();
+    }
+};
+
+int main() {
+    NotificationManager manager;
+
+    // Sending notifications
+    manager.sendNotification(1, "New message received");
+    manager.sendNotification(2, "Reminder: Meeting at 2 PM");
+
+    // Displaying notifications
+    manager.displayNotifications();
+
+    // Clearing notifications
+    manager.clearNotifications();
+
+    return 0;
+}

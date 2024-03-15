@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string username, email, password;
+
+    cout << "Welcome to Sign Up!\n";
+    cout << "Enter your username: ";
+    getline(cin, username);
+
+    cout << "Enter your email: ";
+    getline(cin, email);
+
+    cout << "Enter your password: ";
+    getline(cin, password);
+
+    cout << "\nThank you for signing up!\n";
+    cout << "Username: " << username << endl;
+    cout << "Email: " << email << endl;
+    cout << "Password: " << password << endl;
+
+    return 0;
+}

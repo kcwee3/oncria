@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define a structure to represent a member
+struct Member {
+    string name;
+    string email;
+    string membershipType;
+    int membershipPoints;
+
+    // Constructor
+    Member(const string& name, const string& email, const string& membershipType)
+        : name(name), email(email), membershipType(membershipType), membershipPoints(0) {}
+};
+
+// Function to register a new member
+void registerMember(vector<Member>& members) {
+    string name, email, membershipType;
+    cout << "Enter member's name: ";
+    getline(cin >> ws, name);
+    cout << "Enter member's email: ";
+    cin >> email;
+    cout << "Enter membership type: ";
+    cin >> membershipType;
+    members.push_back(Member(name, email, membershipType));
+    cout << "Member registered successfully!" << endl;
+}
+
+// Function to display member information
+void displayMember(const Member& member) {
+    cout << "Name: " << member.name << endl;
+    cout << "Email: " << member.email << endl;
+    cout << "Membership Type: " << member.membershipType << endl;
+    cout << "Membership Points: " << member.membershipPoints << endl;
+    cout << endl;
+}
+
+int main() {
+    vector<Member> members;
+
+    // Register new members
+    registerMember(members);
+    registerMember(members);
+
+    // Display member information
+    cout << "Member Information:\n";
+    for (const auto& member : members) {
+        displayMember(member);
+    }
+
+    return 0;
+}

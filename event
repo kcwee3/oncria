@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Define a structure to represent an event
+struct Event {
+    string name;
+    string date;
+    string location;
+    vector<string> attendees;
+
+    // Constructor
+    Event(const string& name, const string& date, const string& location)
+        : name(name), date(date), location(location) {}
+
+    // Function to add an attendee to the event
+    void addAttendee(const string& attendee) {
+        attendees.push_back(attendee);
+    }
+
+    // Function to remove an attendee from the event
+    void removeAttendee(const string& attendee) {
+        auto it = find(attendees.begin(), attendees.end(), attendee);
+        if (it != attendees.end()) {
+            attendees.erase(it);
+        }
+    }
+
+    // Function to display event details
+    void displayEvent() {
+        cout << "Event: " << name << endl;
+        cout << "Date: " << date << endl;
+        cout << "Location: " << location << endl;
+        cout << "Attendees:" << endl;
+        for (const auto& attendee : attendees) {
+            cout << "- " << attendee << endl;
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    // Create an event
+    Event event("Birthday Party", "2024-03-15", "Community Center");
+
+    // Add attendees to the event
+    event.addAttendee("Alice");
+    event.addAttendee("Bob");
+    event.addAttendee("Charlie");
+
+    // Display event details
+    event.displayEvent();
+
+    // Remove an attendee from the event
+    event.removeAttendee("Bob");
+
+    // Display event details after removing an attendee
+    event.displayEvent();
+
+    return 0;
+}

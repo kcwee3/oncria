@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Hardcoded user credentials (in a real application, you'd use a database or some other secure storage)
+const string validUsername = "user";
+const string validPassword = "password";
+
+int main() {
+    string username, password;
+
+    cout << "Welcome to the Login Page!\n";
+
+    // Loop until correct username and password are entered
+    while (true) {
+        cout << "Enter username: ";
+        cin >> username;
+
+        cout << "Enter password: ";
+        cin >> password;
+
+        // Check if username and password match
+        if (username == validUsername && password == validPassword) {
+            cout << "\nLogin successful. Welcome, " << username << "!\n";
+            break;  // Exit the loop if login successful
+        } else {
+            cout << "\nInvalid username or password. Please try again.\n";
+        }
+    }
+
+    return 0;
+}

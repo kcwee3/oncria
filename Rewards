@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Define a structure to represent a reward
+struct Reward {
+    string code;
+    string description;
+    int value; // Assuming integer value for simplicity
+    bool redeemed;
+
+    // Constructor
+    Reward(const string& code, const string& description, int value)
+        : code(code), description(description), value(value), redeemed(false) {}
+};
+
+// Function to add a reward to the rewards list
+void addReward(vector<Reward>& rewards, const string& code, const string& description, int value) {
+    rewards.push_back(Reward(code, description, value));
+    cout << "Reward added successfully!" << endl;
+}
+
+// Function to remove a reward from the rewards list
+void removeReward(vector<Reward>& rewards, const string& code) {
+    auto it = find_if(rewards.begin(), rewards.end(), [&code](const Reward& reward) {
+        return reward.code == code;
+    });
+    if (it != rewards.end()) {
+        rewards.erase(it);
+        cout << "Reward removed successfully!" << endl;
+    } else {
+        cout << "Reward not found." << endl;
+    }
+}
+
+// Function to redeem a reward
+void redeemReward(vector<Reward>& rewards, const string& code) {
+    auto it = find_if(rewards.begin(), rewards.end(), [&code](const Reward& reward) {
+        return reward.code == code && !reward.redeemed;
+    });
+    if (it != rewards.end()) {
+        it->redeemed = true;
+        cout << "Reward redeemed successfully!" << endl;
+    } else {
+        cout << "Invalid or already redeemed code. Please try again." << endl;
+    }
+}
+
+int main() {
+    vector<Reward> rewards;
+
+    // Example usage
+    addReward(rewards, "REWARD10", "10% discount coupon", 10);
+    addReward(rewards, "REWARD20", "20% discount coupon", 20);
+
+    redeemReward(rewards, "REWARD10");
+    redeemReward(rewards, "REWARD20");
+    redeemReward(rewards, "REWARD30"); // Invalid code
+
+    return 0;
+}

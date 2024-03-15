@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Define a structure to represent a user profile
+struct UserProfile {
+    string name;
+    string email;
+    int age;
+};
+
+// Function to display user profile
+void displayProfile(const UserProfile& userProfile) {
+    cout << "Name: " << userProfile.name << endl;
+    cout << "Email: " << userProfile.email << endl;
+    cout << "Age: " << userProfile.age << endl;
+}
+
+// Function to edit user profile
+void editProfile(UserProfile& userProfile) {
+    cout << "Edit Profile\n";
+    cout << "Enter new name: ";
+    getline(cin >> ws, userProfile.name);
+    cout << "Enter new email: ";
+    cin >> userProfile.email;
+    cout << "Enter new age: ";
+    cin >> userProfile.age;
+}
+
+int main() {
+    UserProfile user;
+    // Initialize user profile with some default values
+    user.name = "John Doe";
+    user.email = "john@example.com";
+    user.age = 30;
+
+    char choice;
+    do {
+        // Display user profile
+        cout << "User Profile\n";
+        displayProfile(user);
+
+        // Prompt user for edit or exit
+        cout << "\nEdit profile (y/n)? ";
+        cin >> choice;
+
+        if (choice == 'y' || choice == 'Y') {
+            // Clear input buffer before calling editProfile function
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            editProfile(user);
+        }
+    } while (choice == 'y' || choice == 'Y');
+
+    cout << "Exiting...\n";
+
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+// Define a structure to represent a referral
+struct Referral {
+    string referrer;
+    string referee;
+    bool rewarded;
+
+    // Constructor
+    Referral(const string& referrer, const string& referee)
+        : referrer(referrer), referee(referee), rewarded(false) {}
+};
+
+// Function to process a referral and reward the referrer if needed
+void processReferral(const Referral& referral, unordered_map<string, int>& rewards) {
+    if (!referral.rewarded) {
+        // Reward the referrer
+        rewards[referral.referrer] += 1;
+        cout << "Referrer " << referral.referrer << " rewarded for successful referral!" << endl;
+    } else {
+        cout << "Referrer " << referral.referrer << " has already been rewarded for this referral." << endl;
+    }
+}
+
+int main() {
+    // Create a vector to store referrals
+    vector<Referral> referrals;
+
+    // Create a map to store rewards for referrers
+    unordered_map<string, int> rewards;
+
+    // Example referrals
+    referrals.push_back(Referral("Alice", "Bob"));
+    referrals.push_back(Referral("Charlie", "Dave"));
+    referrals.push_back(Referral("Alice", "Eve"));
+
+    // Process referrals and reward referrers
+    for (const auto& referral : referrals) {
+        processReferral(referral, rewards);
+    }
+
+    // Display rewards
+    cout << "\nRewards:" << endl;
+    for (const auto& reward : rewards) {
+        cout << reward.first << ": " << reward.second << " points" << endl;
+    }
+
+    return 0;
+}
